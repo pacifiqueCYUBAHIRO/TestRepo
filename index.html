@@ -1,12 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TestRepo</title>
-</head>
-<body>
-    <h1>Hello World!</h1>
-</body>
+    <title>Blog Creator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        
+      }
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        margin: 0;
+        font-size: 36px;
+      }
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 60%;
+        margin-bottom: 20px;
+      }
+      label {
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      input[type="text"], textarea {
+        font-size: 18px;
+        padding: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        font-size: 24px;
+        padding: 10px;
+        width: 100%;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+      article {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-bottom: 20px;
+        width: 60%;
+        box-sizing: border-box;
+      }
+      div{
+        display: flex;
+        
+      }
+     
+      p {
+        font-size: 18px;
+        margin-bottom: 0;
+      }
+      #posts{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      footer{
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>CREATE LESSON</h1>
+    </header>
+    <main>
+      <form action="insertindex.php" method="POST">
+        <br><br>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" rows="10" required></textarea>
+        <input type="submit" name="submit" value="Post Lesson" onclick="createPost()">
+      </form>
+      <section id="posts">
+        
+      </section>
+      <br><br>
+      <section id="comments">
+
+      </section>
+      <br><br>
+      <section>
+        <label for="name">Name</label>
+        <input type="text" id="name">
+        <label for="comment">Comment</label>
+        <textarea name="" id="comment" cols="2" rows="5"></textarea>
+       <input type="submit" value="SEND" onClick="commenting()" style="background-color: #0a9b36;">
+      </section>
+      </main>
+<br><br>
+      <footer>&copy;  2023 CS EVENING</footer>
+    
+    <script>
+      function createPost() {
+        // Get the input values
+        const title = document.getElementById('title').value;
+        const content = document.getElementById('content').value;
+
+        // Create the HTML for the post
+        const postHTML = `
+          <article>
+            <h2>${title}</h2>
+            <p>${content}</p>
+          </article>
+        `;
+
+        // Add the post to the page
+        const postSection = document.getElementById('posts');
+        postSection.insertAdjacentHTML('beforeend', postHTML);
+
+        // Reset the form
+        document.getElementById('title').value = '';
+        document.getElementById('content').value = '';
+      }
+
+     //comment
+     
+     function commenting() {
+        // Get the input values
+        const name = document.getElementById('name').value;
+        const comment = document.getElementById('comment').value;
+
+        // Create the HTML for the post
+        const displayComment = `
+          <div>
+            <h3>${name}</h3>
+            <p>${comment}</p>
+            </div>
+        `;
+
+        // Add the post to the page
+        const postsSection = document.getElementById('comments');
+        postsSection.insertAdjacentHTML('beforeend', displayComment);
+
+        // Reset the form
+        document.getElementById('name').value = '';
+        document.getElementById('comment').value = '';
+      }
+    </script>
+  </body>
 </html>
